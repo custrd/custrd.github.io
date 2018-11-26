@@ -1,0 +1,669 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Custrd</title>
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'>
+<script
+	  src='https://code.jquery.com/jquery-2.2.4.min.js'
+	  integrity='sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44='
+      crossorigin='anonymous'>
+</script>
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js'></script>
+
+<link href="https://fonts.googleapis.com/css?family=Sacramento|Shadows+Into+Light|Poppins|Emilys+Candy|Megrim|Faster+One|Amatic+SC|Anton|Monoton|Oleo+Script|Sigmar+One|Cabin+Sketch|Homemade+Apple" rel="stylesheet">
+
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+<link rel="icon" href="media/cadelgreen.png">
+
+<!-- Chrome, Firefox OS and Opera -->
+<meta name="theme-color" content="#FFA500">
+<!-- Windows Phone -->
+<meta name="msapplication-navbutton-color" content="#FFA500">
+<!-- iOS Safari -->
+<meta name="apple-mobile-web-app-status-bar-style" content="#FFA500">
+
+
+<script src='script.js'></script>
+
+<style>
+
+body{
+	margin:0;	
+    
+	  	
+}
+
+.wrapper{
+	width:100%;
+	height:850px;
+	display:grid;
+	grid-template-columns: 1.7fr 2fr 2.3fr;
+	grid-template-rows: 1fr;
+	grid-template-areas:
+		"sidebar1 container sidebar2";
+}
+
+.header{
+	grid-area:header;
+	background:#739900;
+	padding:5px;
+	display:none;
+}
+
+.sidebar1{
+	grid-area:sidebar1;
+	//background:#86b300;
+	//background-image: url("media/hypnotize.png");
+	background:#2F4F4F;
+	padding:2px;
+	
+}
+
+.sidebar2{
+	grid-area:sidebar2;
+	//background:#86b300;
+	//background-image: url("media/hypnotize.png");
+	background:#FFA500;
+	padding:2px;
+	
+}
+
+.container{
+	grid-area:container;
+	//background:#e0e0d1;
+	background-image: url("https://cadel.xyz/media/swirl_pattern.png");
+	//background:rgba(172, 230, 0, 0.2);
+	padding:15px;
+	text-align:center;
+}
+
+.dlcont{
+	border: 2px solid #739900; 
+	border-radius: 8px;
+	height:90%;
+	padding-top: 100px;
+	padding-left:15px;
+	padding-right:15px;		
+}
+
+.headlinks{
+	color:white;
+}
+.headlinks:link {
+    text-decoration: none;
+}
+.headlinks:visited {
+    text-decoration: none;
+}
+.headlinks:hover {
+    text-decoration: none;
+	color:#ffe6e6;
+}
+.headlinks:active {
+    text-decoration: none;
+	color:#ffe6e6;
+}
+
+.likedlinks{
+	color:#334d00;
+}
+.likedlinks:link {
+    text-decoration: none;
+}
+.likedlinks:visited {
+    text-decoration: none;
+}
+.likedlinks:hover {
+    text-decoration: none;
+	color:#669900;
+}
+.likedlinks:active {
+    text-decoration: none;
+	color:#669900;
+}
+
+.dlbtn{
+	width:100%; 
+	height:50px; 
+	font-size:20px;
+	background:linear-gradient(to bottom, #3d3d29, #1f1f14);
+	color:white;
+	border: 2px solid #4d0000;
+	border-radius:5px;
+    border-left: none;
+	border-top: none;
+    cursor: pointer;
+	font-family:Lucida Sans Unicode;
+}
+.dlbtn:hover{
+	background:linear-gradient(to bottom, #1f1f14, #3d3d29);
+}
+
+.dashbtn{
+	width:30px; 
+	height:30px; 
+	font-size:10px;
+	background:white;
+	color:none;
+	border: 2px solid white;
+	border-radius:100%;
+    
+    cursor: pointer;
+	font-family:Lucida Sans Unicode;
+}
+.dashbtn:hover{
+	background:white;
+}
+
+.dashbtn2{
+	width:30px; 
+	height:30px; 
+	font-size:10px;
+	background:#2F4F4F;
+	color:white;
+	border: 2px solid #2F4F4F;;
+	border-radius:100%;
+    
+    cursor: pointer;
+	font-family:Lucida Sans Unicode;
+}
+.dashbtn2:hover{
+	//background:#2F4F4F;
+	width:35px; 
+	height:35px; 
+}
+
+.inptbx{
+	width:150px; 
+	height:15px; 
+	font-size:10px;
+	background:white;
+	color:none;
+	padding:5px;
+	border: 2px solid white;
+	//border-radius:100%;
+	font-family:Lucida Sans Unicode;
+}
+.inptbx2{
+	width:60%; 
+	height:15px; 
+	font-size:10px;
+	background:white;
+	color:none;
+	padding:5px;
+	border: 2px solid white;
+	//border-radius:100%;
+	font-family:Lucida Sans Unicode;
+}
+
+.like{
+	color:#334d00;
+}
+.like:link {
+    color:#334d00;
+	text-decoration: none;
+}
+.like:visited {
+    color:#334d00;
+	text-decoration: none;
+}
+.like:hover {
+    color:grey;
+	text-decoration: none;
+}
+
+textarea {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+	
+    width: 90%;
+	resize: none;
+}
+
+#dash{
+	position: absolute;
+    //bottom: 0;
+	top: 150px;
+    left: 0;
+	//opacity:0.6;
+	//background:yellow;
+	//width:50%;
+	display:none;	
+}
+#filter{
+	position:absolute; 
+	width:100%; 
+	height:100%;
+	top:0; left:0;
+	background:rgb(204, 0, 0);
+	opacity:0.5;
+	display:none;
+}
+#canvas{
+	position: relative;
+}
+
+.para {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#frame{
+    //-webkit-filter: grayscale(100%); 
+    //filter: grayscale(100%);
+	
+	//-webkit-filter: blur(1px); 
+    //filter: blur(1px);
+}
+
+@media screen and (max-width: 34em){
+	.wrapper{
+		height:950px;
+		grid-template-columns: 1fr;
+		grid-template-rows: 1fr 0.5fr 0.5fr;
+		grid-template-areas:
+			"container"
+			"sidebar2"
+			"sidebar1";
+	}
+					
+	.dlcont{
+		height:80%;
+	}
+	
+	#dash{
+		display:block;
+	}
+	#dash2{
+		display:none;
+	}
+	
+}	
+
+</style>
+<script>
+$(function() { 
+  $("#btnSave").click(function() { 
+	var i=0;
+	if($('#dash').css('display') == 'block'){	
+		i++;
+	}
+	$("#dash").hide(); 
+    html2canvas($("#cardlog"), {
+      onrendered: function(canvas) {
+        var image = new Image();
+        image.id = "pic";
+        image.src = canvas.toDataURL();        
+		$('#img-out').empty();
+		document.getElementById('img-out').appendChild(image);
+		if(i==1){	
+			$("#dash").show();
+		}
+		
+		$('html,body').animate({
+			scrollTop: $("#img-out").offset().top
+		}, 'slow');
+      }
+    });
+  });
+});
+
+function show(x){
+	if(x==2){	
+		if(document.getElementById('pp').style.display=='none'){
+			document.getElementById('pp').style.display='block';
+			document.getElementById('pplab').style.backgroundColor='#FFA500';
+			document.getElementById('pplab').style.color='#2F4F4F';
+			$('html,body').animate({
+				scrollTop: $("#pp").offset().top
+			}, 'slow');
+		}else if(document.getElementById('pp').style.display=='block'){
+			document.getElementById('pp').style.display='none';
+			document.getElementById('pplab').style.backgroundColor='';
+			document.getElementById('pplab').style.color='white';
+		}
+	}else if(x==1){
+		if(document.getElementById('abt').style.display=='none'){
+			document.getElementById('abt').style.display='block';
+			document.getElementById('abtlab').style.backgroundColor='#FFA500';
+			document.getElementById('abtlab').style.color='#2F4F4F';
+			$('html,body').animate({
+				scrollTop: $("#abt").offset().top
+			}, 'slow');
+		}else if(document.getElementById('abt').style.display=='block'){
+			document.getElementById('abt').style.display='none';
+			document.getElementById('abtlab').style.backgroundColor='';
+			document.getElementById('abtlab').style.color='white';
+		}
+	}else{
+		if(document.getElementById('tos').style.display=='none'){
+			document.getElementById('tos').style.display='block';
+			document.getElementById('toslab').style.backgroundColor='#FFA500';
+			document.getElementById('toslab').style.color='#2F4F4F';
+			$('html,body').animate({
+				scrollTop: $("#tos").offset().top
+			}, 'slow');
+		}else if(document.getElementById('tos').style.display=='block'){
+			document.getElementById('tos').style.display='none';
+			document.getElementById('toslab').style.backgroundColor='';
+			document.getElementById('toslab').style.color='white';
+		}
+	}
+}
+
+function showdash(){
+	if(document.getElementById('dashsub').style.visibility=='hidden'){
+		document.getElementById('dashsub').style.visibility='visible';
+		document.getElementById('dashsub').style.opacity='0.6';
+	}else{
+		document.getElementById('dashsub').style.visibility='hidden';
+		document.getElementById('dashsub').style.opacity='0';
+	}
+}
+
+</script>
+</head>
+<body>
+<div class="wrapper">
+<div id='head' class="header">
+<div style="float:left; color:white; font-size:30px; padding-top:7px; padding-left:10px; width:30%; font-family:Book Antiqua;"><a href='#' class='headlinks'>Cadel</a></div>
+</div>
+<div class='sidebar1' style='text-align:center;'>
+<p style='display:inline-block; font-size:50px; color:white; font-family:Cabin Sketch'>CUSTRD
+<br><span style='font-size:20px; font-family:Shadows Into Light;'>Don't just talk. Use custrd!!</span></p>
+
+<div style='color:white;'>
+<p id='abtlab' style='padding:10px;'><label><span onclick='show(1)' style='font-size:19px; font-family:Megrim;'><b>About</b></span></label>
+<span id='abt' style='display:none; font-size:15px; font-family:Oleo Script;'><br>Founder & CEO - Subham Saha.<br>Co-Founder - Arkadeep Mukhopadhyay</span>
+</p>
+<p id='pplab' style='padding:10px;'><label><span onclick='show(2)' style='font-size:19px; font-family:Megrim;'><b>Privacy Policy</b></span>
+<span id='pp' style='display:none; font-size:15px; font-family:Oleo Script;'><br>we cannot promise you anything yet.</span></label>
+</p>
+<p id='toslab' style='padding:10px;'><label><span onclick='show(3)' style='font-size:19px; font-family:Megrim;'><b>Terms of service</b></span></label>
+<span id='tos' style='display:none; font-size:15px; font-family:Oleo Script;'><br>same as privacy policy.</span>
+</p>
+</div>
+</div>
+
+<div class="container">
+
+<div id='cardlog' >
+
+<div id="canvas"  style="display:inline-block; width:90%; padding:3%; padding-top:5%; padding-bottom:5%; background:#2F4F4F;" >
+			
+			<div id="frame"  style="display:inline-block; padding:5px; padding-top:17px; min-height:345px; width:90%;  border: 3px solid #FFA500;">
+				<p id="p1" class='para' style="font-size:35px; padding:5px; word-break:break-word; color:#ffff99; font-family:anton;">The heading</p>
+				<p id="p2" class='para' style="font-size:35px; padding:5px; word-break:break-word; color:#ffff99; font-family:Amatic SC;">a body maybe</p>
+				<p id="p3" class='para' style="font-size:35px; padding:5px; word-break:break-word; color:#ffff99; font-family:sacramento;">Try to end it here...</p>
+				<mark style='background:rgba(0,0,0,0.35); padding:5px; opacity:0.5; font-size:12.5px; color:white; font-family:calibri;'>custrd.github.io/custrd</mark><br><br>
+			</div>
+<div id='dash' style='text-align:left; padding:5px;'>
+<button onclick='showdash()' class='dashbtn' style='opacity:0.6; height:40px; width:40px; font-size:20px;'><i class="fas fa-pen"></i></button>
+<div id='dashsub' style='opacity:0; visibility:hidden; transition: visibility 0.5s, opacity 0.5s linear;'>
+<br><button onclick='updtfs("p1")' class='dashbtn'><i class="fas fa-plus"></i></button>
+<!--<button onclick='updtcol("p1")' >col1</button>-->
+<!--<button onclick='updtff("p1")' >ff1</button>-->
+<input type='text' id='text1' class='inptbx' value='' />
+
+<br><br><button onclick='updtfs("p2")' class='dashbtn'><i class="fas fa-plus"></i></button>
+<!--<button onclick='updtcol("p2")' >col2</button>-->
+<!--<button onclick='updtff("p2")' >ff2</button>-->
+<input type='text' id='text2' class='inptbx' value='' />
+
+<br><br><button onclick='updtfs("p3")' class='dashbtn'><i class="fas fa-plus"></i></button>
+<!--<button onclick='updtcol("p3")' >col3</button>-->
+<!--<button onclick='updtff("p3")' >ff3</button>-->
+<input type='text' id='text3' class='inptbx' value='' />
+</div>
+</div>
+
+<div id='filter' style=''></div>
+
+</div>
+</div>
+<div id='caninfo'></div>
+<script>
+function hexToRgb(hex) {
+    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16)
+    } : null;
+}
+
+$('#canvas').on('click', function (e){
+	if (e.target !== this)
+		return;
+	
+	var colarr=["#ffff99", "#347C98", "#7a1f5c", "#993333", "#ccccff", "#1a1a1a", "#66B032", "#C21460", "#008080", "#2F4F4F", "#FFD700", "#FFA500", "#FA8072", "#990000", "#ffffe6"];
+	var bgcol = document.getElementById("canvas").style.backgroundColor;
+	for (i = 0; i < colarr.length; i++) { 
+		if(bgcol=="rgb("+hexToRgb(colarr[i]).r+", "+hexToRgb(colarr[i]).g+", "+hexToRgb(colarr[i]).b+")"){	
+			if(i==(colarr.length-1)){
+				document.getElementById("canvas").style.backgroundColor = colarr[0];
+			}else{	
+				document.getElementById("canvas").style.backgroundColor = colarr[i+1];
+			}
+		}
+	}
+			
+});
+$('#frame').on('click', function (e){
+	if (e.target !== this)
+		return;
+	
+	var colarr=["#ffff99", "#347C98", "#7a1f5c", "#993333", "#ccccff", "#1a1a1a", "#66B032", "#C21460", "#008080", "#2F4F4F", "#FFD700", "#FFA500", "#FA8072", "#990000", "#ffffe6"];
+	var bgcol = document.getElementById("frame").style.borderColor;
+	for (i = 0; i < colarr.length; i++) { 
+		if(bgcol=="rgb("+hexToRgb(colarr[i]).r+", "+hexToRgb(colarr[i]).g+", "+hexToRgb(colarr[i]).b+")"){	
+			if(i==(colarr.length-1)){
+				document.getElementById("frame").style.borderColor = colarr[0];
+			}else{	
+				document.getElementById("frame").style.borderColor = colarr[i+1];
+			}
+		}
+	}
+			
+});
+
+function updtfs(x){
+	var colarr=['15px','25px','35px','45px','55px'];
+	var bgcol = document.getElementById(x).style.fontSize;
+	for (i = 0; i < colarr.length; i++) { 
+		if(bgcol==colarr[i]){	
+			if(i==(colarr.length-1)){
+				document.getElementById(x).style.fontSize = colarr[0];
+			}else{	
+				document.getElementById(x).style.fontSize = colarr[i+1];
+			}
+		}
+	}			
+}
+$('.para').on('click', function (e){
+	if (e.target !== this)
+		return;
+	
+	var x = $(this).attr('id');
+	var $this = $(this);
+    if ($this.hasClass('clicked')){
+        $this.removeClass('clicked'); 
+        //var x = $(this).attr('id');
+		var colarr=['anton','sacramento','Megrim','Amatic SC','Homemade Apple','Sigmar One','Monoton','Faster One','Shadows Into Light','Emilys Candy','Oleo Script','Cabin Sketch'];
+				var bgcol = document.getElementById(x).style.fontFamily.replace(/"/g, "");
+				for (i = 0; i < colarr.length; i++) { 
+					if(bgcol==colarr[i].replace(/"/g, "")){	
+						if(i==(colarr.length-1)){
+							document.getElementById(x).style.fontFamily = colarr[0].replace(/"/g, "");
+						}else{	
+							document.getElementById(x).style.fontFamily = colarr[i+1].replace(/"/g, "");
+						}
+					}
+				}  
+    }else{
+        $this.addClass('clicked');
+        setTimeout(function() { 
+            if ($this.hasClass('clicked')){
+                $this.removeClass('clicked'); 
+                //var x = $(this).attr('id');
+				var colarr=["#ffff99", "#347C98", "#7a1f5c", "#993333", "#ccccff", "#1a1a1a", "#66B032", "#C21460", "#008080", "#2F4F4F", "#FFD700", "#FFA500", "#FA8072", "#990000", "#ffffe6"];
+				var bgcol = document.getElementById(x).style.color;
+				for (i = 0; i < colarr.length; i++) { 
+					if(bgcol=="rgb("+hexToRgb(colarr[i]).r+", "+hexToRgb(colarr[i]).g+", "+hexToRgb(colarr[i]).b+")"){	
+						if(i==(colarr.length-1)){
+							document.getElementById(x).style.color = colarr[0];
+						}else{	
+							document.getElementById(x).style.color = colarr[i+1];
+						}
+					}
+				}           
+            }
+        }, 400);          
+    }
+	
+	/*var x = $(this).attr('id');
+	var colarr=["#ffff99", "#347C98", "#7a1f5c", "#993333", "#1a1a1a", "#66B032", "#C21460", "#008080", "#2F4F4F", "#FFD700", "#FFA500", "#FA8072", "#990000", "#ffffe6"];
+	var bgcol = document.getElementById(x).style.color;
+	for (i = 0; i < colarr.length; i++) { 
+		if(bgcol=="rgb("+hexToRgb(colarr[i]).r+", "+hexToRgb(colarr[i]).g+", "+hexToRgb(colarr[i]).b+")"){	
+			if(i==(colarr.length-1)){
+				document.getElementById(x).style.color = colarr[0];
+			}else{	
+				document.getElementById(x).style.color = colarr[i+1];
+			}
+		}
+	}*/
+			
+});
+/*function updtff(x){
+	var colarr=['anton','sacramento','Megrim','Amatic SC','Homemade Apple','Sigmar One','Monoton','Faster One','Shadows Into Light','Emilys Candy','Oleo Script','Cabin Sketch'];
+	var bgcol = document.getElementById(x).style.fontFamily.replace(/"/g, "");
+	for (i = 0; i < colarr.length; i++) { 
+		if(bgcol==colarr[i].replace(/"/g, "")){	
+			if(i==(colarr.length-1)){
+				document.getElementById(x).style.fontFamily = colarr[0].replace(/"/g, "");
+			}else{	
+				document.getElementById(x).style.fontFamily = colarr[i+1].replace(/"/g, "");
+			}
+		}
+	}
+	
+	
+}*/
+var fil=0;
+function filter(){
+	var colarr=["-webkit-gradient(linear, left top, left bottom, from(#ccc), to(#000))",
+	"-webkit-linear-gradient(#00cc00,#66ff66, #006600)",
+	"-webkit-linear-gradient(#4d001f,#ff3385,#99003d)",	
+	'-webkit-linear-gradient(#ff0000,#ffcccc,#003399)',
+	'-webkit-linear-gradient(#ff9900,#660066)',
+	'-webkit-linear-gradient(#000066,#ffcc00,#ffcc00)',
+	
+	'rgb(0,255,0)','rgb(255,0,0)'];
+	document.getElementById("filter").style.display = 'block'; 
+	document.getElementById("fltrnone").style.display = 'inline-block';
+			if(fil==(colarr.length-1)){
+				//document.getElementById("filter").style.backgroundColor = colarr[0];
+				$('#filter').css({background: colarr[0]});
+				//document.getElementById('caninfo').innerHTML = colarr[0];
+				fil=0;
+			}else{	
+				//document.getElementById("filter").style.backgroundColor = colarr[fil+1];
+				$('#filter').css({background: colarr[fil+1]});
+				//document.getElementById('caninfo').innerHTML = colarr[fil+1];
+				fil=fil+1;				
+			}	
+			//document.getElementById('caninfo').innerHTML = document.getElementById("filter").style.backgroundColor;
+}
+function fltrcolnone(){
+	document.getElementById("filter").style.display = 'none';
+	document.getElementById("fltrnone").style.display = 'none';
+}
+
+$(function(){
+$('#text1').keyup(function () {
+    var valThis = $('#text1').val();
+    $('#p1').text(valThis);
+ });
+});
+$(function(){
+$('#text2').keyup(function () {
+    var valThis = $('#text2').val();
+    $('#p2').text(valThis);
+ });
+});
+$(function(){
+$('#text3').keyup(function () {
+    var valThis = $('#text3').val();
+    $('#p3').text(valThis);
+ });
+});
+
+$(function(){
+$('#text11').keyup(function () {
+    var valThis = $('#text11').val();
+    $('#p1').text(valThis);
+ });
+});
+$(function(){
+$('#text22').keyup(function () {
+    var valThis = $('#text22').val();
+    $('#p2').text(valThis);
+ });
+});
+$(function(){
+$('#text33').keyup(function () {
+    var valThis = $('#text33').val();
+    $('#p3').text(valThis);
+ });
+});
+
+</script>
+
+</div>
+
+<div class='sidebar2' style='text-align:center; padding:10px;'>
+<div>
+
+<button id="fltrbtn" onclick='filter()' class='dashbtn2' style='width:50px; height:50px; font-size:15px;'><i class="fas fa-filter"></i></button> <button id="fltrnone" onclick='fltrcolnone()' class='dashbtn2' style='display:none;'><i class="fas fa-times"></i></button><br>
+<div id='dash2' class='padding-top:20px;'>
+<!--<br><button onclick='updtbgcol()' >bgcol</button>
+<button onclick='updtframe()' >frame</button>-->
+
+<br><button onclick='updtfs("p1")' class='dashbtn2'><i class="fas fa-plus"></i></button>
+<!--<button onclick='updtcol("p1")' >col1</button>-->
+<!--<button onclick='updtff("p1")' >ff1</button>-->
+<input type='text' id='text11' class='inptbx2' value='' />
+
+<br><br><button onclick='updtfs("p2")' class='dashbtn2'><i class="fas fa-plus"></i></button>
+<!--<button onclick='updtcol("p2")' >col2</button>-->
+<!--<button onclick='updtff("p2")' >ff2</button>-->
+<input type='text' id='text22' class='inptbx2' value='' />
+
+<br><br><button onclick='updtfs("p3")' class='dashbtn2'><i class="fas fa-plus"></i></button>
+<!--<button onclick='updtcol("p3")' >col3</button>-->
+<!--<button onclick='updtff("p3")' >ff3</button>-->
+<input type='text' id='text33' class='inptbx2' value='' />
+</div>
+
+<p style='font-size:15px; font-family:Oleo Script; color:white;'>Click on share, long press on the generated card and then select...yeah you guessed it right...the share image option</p>
+<button id="btnSave" class='dashbtn2' style='width:50px; height:50px; font-size:10px;'><i class="fas fa-share-alt"></i></button>
+</div>
+<div id="img-out" style='display:inline-block; padding-top:10px;'></div>
+</div>
+
+</div>
+
+
+
+</body>
+</html>
