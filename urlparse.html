@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
+<script>
+
+function createlink(){
+	var ques = [];
+	ques[0] = document.getElementById("q1").value;
+	ques[1] = document.getElementById("q2").value;
+	ques[2] = document.getElementById("q3").value;
+	ques[3] = document.getElementById("q4").value;
+	ques[4] = document.getElementById("q5").value;
+	localStorage.setItem("questions", JSON.stringify(ques));
+	
+	var storedques = JSON.parse(localStorage.getItem("questions"));
+	$("#dispques").append('<h2>Your questions are :</h2>');
+	for (var i=0; i<storedques.length; i++){	
+		$("#dispques").append(storedques[i]+'<br>');
+	}
+	
+	/*var encrypted = CryptoJS.AES.encrypt(JSON.stringify(ques), "7044015977");
+	$("#dispques").append(encrypted);*/
+	
+}
+
+
+
+</script>
+</head>
+<body style='background:yellow;'>
+<!--<div>
+
+<p>question 1 : <textarea id='q1' placeholder='question 1' name='ques1' >question not decided yet</textarea></p>
+<p>question 2 : <textarea id='q2' placeholder='question 2' name='ques2' >question not decided yet</textarea></p>
+<p>question 3 : <textarea id='q3' placeholder='question 3' name='ques3' >question not decided yet</textarea></p>
+<p>question 4 : <textarea id='q4' placeholder='question 4' name='ques4' >question not decided yet</textarea></p>
+<p>question 5 : <textarea id='q5' placeholder='question 5' name='ques5' >question not decided yet</textarea></p>
+<p>Your full name or instagram username : <input type='text' name='name' placeholder='enter your name' /></p>
+<p><input onclick='createlink()' type='button' name='addques' value='create link' /></p>
+
+</div>-->
+
+<div id='dispques' ></div>
+
+
+</body>
+<script>
+
+var urlParams;
+(window.onpopstate = function () {
+    var match,
+        //pl     = /\+/g,  // Regex for replacing addition symbol with a space
+        search = /([^&=]+)=?([^&]*)/g,
+        decode = function (s) { return decodeURIComponent(s); },
+        query  = window.location.search.substring(1);
+		//query = '?i=main&mode=front&sid=de8d49b78a85a322c4155015fdce22c4&enc=+Hello%20&empty';
+
+    urlParams = {};
+    while (match = search.exec(query))
+       urlParams[decode(match[1])] = decode(match[2]);
+})();
+
+var encrypted = urlParams["q"];
+//var encrypted = CryptoJS.AES.encrypt('blah', "7044015977");
+var decrypted = CryptoJS.AES.decrypt(encrypted, "7044015977");
+//var questions = decrypted.toString(CryptoJS.enc.Utf8);
+$("#dispques").append('<br>'+decrypted.toString(CryptoJS.enc.Utf8));
+//document.getElementById("dispques").innerHTML = decrypted.toString(CryptoJS.enc.Utf8);
+
+var storedques = JSON.parse(decrypted.toString(CryptoJS.enc.Utf8));
+	$("#dispques").append('<h2>Your questions are :</h2>');
+	for (var i=0; i<storedques.length; i++){	
+		$("#dispques").append(storedques[i]+'<br>');
+	}
+
+
+</script>
+</html>
